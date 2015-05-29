@@ -1,4 +1,5 @@
 class window.Deck extends Backbone.Collection
+
   model: Card
 
   initialize: ->
@@ -10,4 +11,3 @@ class window.Deck extends Backbone.Collection
   dealPlayer: -> new Hand [@pop(), @pop()], @
 
   dealDealer: -> new Hand [@pop().flip(), @pop()], @, true
-
