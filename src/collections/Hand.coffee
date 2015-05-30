@@ -4,12 +4,16 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
     # name = if @isDealer then 'DealerHandCollection' else 'PlayerHandCollection'
     # @set 'name', name
+    @dealer = !!@isDealer
 
   hit: ->
     @add(@deck.pop())
 
   stand: ->
     @trigger 'stand', @
+
+    if @dealer
+      @end()
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -32,5 +36,10 @@ class window.Hand extends Backbone.Collection
   busted: ->
     @trigger 'bust' , @
 
+    if @dealer
+      @end()
+
+  end: ->
+    @trigger 'end', @
 
 
