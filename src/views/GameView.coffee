@@ -22,11 +22,20 @@ class  window.GameView extends Backbone.View
     @model.on 'end', =>
       winStatus = 'win!'
 
-      playerScore = @model.get 'playerHand'
+      playerMinScore = @model.get 'playerHand'
         .scores()[0]
+      playerMaxScore = @model.get 'playerHand'
+        .scores()[1]
 
-      if @model.get 'dealerHand'
-        .scores()[0] > playerScore then winStatus = 'lose!'
+      dealerMinScore = @model.get 'dealerHand'
+        .scores()[0]
+      dealerMaxScore = @model.get 'dealerHand'
+        .scores()[1]
+
+      playerScore = if playerMaxScore < 22 then playerMaxScore else playerMinScore
+      dealerScore = if dealerMaxScore < 22 then dealerMaxScore else dealerMinScore
+
+      if dealerScore < 22 and dealerScore > playerScore then winStatus = 'lose!'
 
       if playerScore > 21
         winStatus = 'lose!'

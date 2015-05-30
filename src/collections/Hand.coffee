@@ -30,7 +30,6 @@ class window.Hand extends Backbone.Collection
 
     # find out if bust,
     # if so, emit 'bust' event
-
     [@minScore(), @minScore() + 10 * @hasAce()]
 
   busted: ->

@@ -8,27 +8,48 @@ class window.GameModel extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
 
     @get 'playerHand'
+      # Make Dealer flip if player busts or stands
       .on 'bust stand', =>
         @get 'dealerHand'
           .at 0
             .flip()
+
+      # Dealer stands if player busts
+      .on 'bust', =>
         @get 'dealerHand'
           .stand()
         #trigger end event (heard by gameview)
 
+      #Player stands, Dealer hits or stands based on score
       .on 'stand', =>
-        score = @get 'dealerHand'
-          .scores()[0]
 
-        if score < 17
-          @get 'dealerHand'
-            .hit()
-        else if score > 21
-          @get 'dealerHand'
-            .bust()
-        else
-          @get 'dealerHand'
-            .stand()
+        #Possible Dealer scores
+        minScore = @get 'dealerHand'
+          .scores()[0]
+        maxScore = @get 'dealerHand'
+          .scores()[1]
+        hasAce = minScore isnt maxScore
+
+        if not hasAce
+          if minScore < 17
+            @get 'dealerHand'
+              .hit()
+          else if minScore > 21
+            @get 'dealerHand'
+              .bust()
+          else
+            @get 'dealerHand'
+              .stand()
+        else if hasAce
+          if minScore < 17 and maxScore < 18
+            @get 'dealerHand'
+              .hit()
+          else if minScore > 21
+            @get 'dealerHand'
+              .bust()
+          else
+            @get 'dealerHand'
+              .stand()
 
         #trigger end event (heard by gameview)
     @get 'dealerHand'
