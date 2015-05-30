@@ -37,8 +37,7 @@ class  window.GameView extends Backbone.View
 
       if dealerScore < 22 and dealerScore > playerScore then winStatus = 'lose!'
 
-      if playerScore > 21
-        winStatus = 'lose!'
+      if playerScore > 21 then winStatus = 'lose!'
 
       @$('.status').text(winStatus)
       @$('.gameEnd').show()

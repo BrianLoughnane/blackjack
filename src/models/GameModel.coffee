@@ -22,40 +22,47 @@ class window.GameModel extends Backbone.Model
 
       #Player stands, Dealer hits or stands based on score
       .on 'stand', =>
+        @determineAction()
 
-        #Possible Dealer scores
-        minScore = @get 'dealerHand'
-          .scores()[0]
-        maxScore = @get 'dealerHand'
-          .scores()[1]
-        hasAce = minScore isnt maxScore
-
-        if not hasAce
-          if minScore < 17
-            @get 'dealerHand'
-              .hit()
-          else if minScore > 21
-            @get 'dealerHand'
-              .bust()
-          else
-            @get 'dealerHand'
-              .stand()
-
-        else if hasAce
-          if minScore < 17 and maxScore < 18
-            @get 'dealerHand'
-              .hit()
-          else if minScore > 21
-            @get 'dealerHand'
-              .bust()
-          else
-            @get 'dealerHand'
-              .stand()
+    @get 'dealerHand'
+      .on 'hit', =>
+         #Possible Dealer scores
+        @determineAction()
 
         #trigger end event (heard by gameview)
     @get 'dealerHand'
       .on 'end', =>
         @trigger 'end', @
+
+  determineAction: =>
+    minScore = @get 'dealerHand'
+      .scores()[0]
+    maxScore = @get 'dealerHand'
+      .scores()[1]
+    hasAce = minScore isnt maxScore
+    if not hasAce
+      if minScore < 17
+        @get 'dealerHand'
+          .hit()
+      else if minScore > 21
+        @get 'dealerHand'
+          .bust()
+      else
+        @get 'dealerHand'
+          .stand()
+    else if hasAce
+      if minScore < 17 and maxScore < 18
+        @get 'dealerHand'
+          .hit()
+      else if minScore > 21
+        @get 'dealerHand'
+          .bust()
+      else if maxScore > 21 and minScore < 17
+        @get 'dealerHand'
+          .hit()
+      else
+        @get 'dealerHand'
+          .stand()
 
     # Add listener for game completion and reset deck playerhand and dealerhand
     # GameModel?

@@ -8,7 +8,9 @@
 }
 
 .covered {
-  background-color: black;
+  background-image: url('../img/card-back.png');
+  background-position: center;
+  text-indent: -5000px;
 }
 
 .hand {
@@ -18,3 +20,4 @@
 .gameEnd {
   display: none;
 }
+

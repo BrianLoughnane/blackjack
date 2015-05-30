@@ -7,7 +7,9 @@ class window.Hand extends Backbone.Collection
     @dealer = !!@isDealer
 
   hit: ->
+    debugger
     @add(@deck.pop())
+    @trigger 'hit', @
 
   stand: ->
     @trigger 'stand', @
