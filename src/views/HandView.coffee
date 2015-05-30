@@ -13,13 +13,18 @@ class window.HandView extends Backbone.View
     @render()
 
   render: (bust) ->
+
     @$el.children().detach()
     @$el.html @template @collection
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
-    @$('.score').text @collection.scores()[0]
+
+    if @collection.scores()[0] isnt @collection.scores()[1]
+      aceScores = @collection.scores()[0] + "/" + @collection.scores()[1]
+      @$('.score').text aceScores
+    else
+      @$('.score').text @collection.scores()[0]
+
     if @collection.scores()[0] > 21
       @$('.score').text 'BUSTED!'
       @collection.busted()
-    @collection
-
