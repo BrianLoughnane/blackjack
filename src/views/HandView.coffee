@@ -19,7 +19,7 @@ class window.HandView extends Backbone.View
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
 
-    if @collection.scores()[0] isnt @collection.scores()[1]
+    if @collection.scores()[0] isnt @collection.scores()[1] and @collection.scores()[1] < 22
       aceScores = @collection.scores()[0] + "/" + @collection.scores()[1]
       @$('.score').text aceScores
     else

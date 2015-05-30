@@ -40,6 +40,7 @@ class window.GameModel extends Backbone.Model
           else
             @get 'dealerHand'
               .stand()
+
         else if hasAce
           if minScore < 17 and maxScore < 18
             @get 'dealerHand'
