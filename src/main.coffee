@@ -1,1 +1,1 @@
-new AppView(model: new GameModel()).$el.appendTo 'body'
+new GameView(model: new GameModel()).$el.appendTo 'body'
