@@ -15,6 +15,7 @@ class  window.GameView extends Backbone.View
     @model.get 'playerHand'
       .on 'bust stand', =>
         @$('button').hide()
+
     @render()
 
   render: ->

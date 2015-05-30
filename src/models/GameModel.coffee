@@ -8,7 +8,7 @@ class window.GameModel extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
 
     @get 'playerHand'
-      .on 'bust', =>
+      .on 'bust stand', =>
         @get 'dealerHand'
           .at 0
             .flip()
