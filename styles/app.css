@@ -1,6 +1,26 @@
 body {
   background-image: url('../img/felt.jpg');
   color: cornsilk;
+  font-family: cursive;
+}
+
+button {
+  width: 190px;
+  height: 60px;
+  margin: 60px 20px;
+  font-size: 20px;
+  font-family: cursive;
+  border-radius: 10px;
+  background-color: cornsilk;
+  display: block
+}
+
+.buttons {
+  display: inline-block;
+  position: absolute;
+  top: 80px;
+  left: 130px;
+  text-align: center;
 }
 
 .card {
@@ -19,6 +39,10 @@ body {
   background-position: center;
 }
 
+.status {
+  font-size: 100px
+}
+
 .hand {
   overflow: auto;
   text-align: center;
@@ -26,6 +50,13 @@ body {
 
 .gameEnd {
   display: none;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: crimson;
+  font-size: 30px;
 }
 
 .center {
@@ -40,9 +71,9 @@ body {
 }
 
 .player-hand-container{
-  bottom: 198px;
+  bottom: 140px;
 }
 
 .dealer-hand-container {
-  top: 130px;
+  top: 60px;
 }
