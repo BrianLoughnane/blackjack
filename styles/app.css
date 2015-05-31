@@ -1,9 +1,14 @@
+body {
+  background-image: url('../img/felt.jpg');
+  color: cornsilk;
+}
+
 .card {
   float: left;
   border: solid 1px black;
-  width: 100px;
+  width: 146px;
   border-radius: 5px;
-  height: 140px;
+  height: 200px;
   margin-right: 20px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -28,3 +33,16 @@
   margin: auto;
 }
 
+.hand-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.player-hand-container{
+  bottom: 198px;
+}
+
+.dealer-hand-container {
+  top: 130px;
+}
